@@ -28,7 +28,7 @@ func generateBaseHtml() string {
 }
 
 func generateIndexHtml() string {
-	return `{%extends base.html%}
+	return `{%extends "base.html" %}
 
 {%block title%}Home{%endblock%}
 
