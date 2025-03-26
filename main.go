@@ -55,10 +55,48 @@ func createProject(path string) {
 		}
 	}
 
-	for _, file := range files {
-		_, err := os.Create(path + file)
+	for _, filep := range files {
+		file, err := os.Create(path + filep)
 		if err != nil {
 			color.Red("%v", err)
+		} else {
+			fileSlice := strings.Split(filep, "/")
+			filename := fileSlice[len(fileSlice)-1]
+
+			if filename == "main.py" {
+				_, err := file.WriteString(generateMainPy())
+				if err != nil {
+					color.Red("%v", err)
+				}
+			}
+
+			if filename == "views.py" {
+				_, err := file.WriteString(generateViewsPy())
+				if err != nil {
+					color.Red("%v", err)
+				}
+			}
+
+			if filename == "__init__.py" {
+				_, err := file.WriteString(generateInitPy())
+				if err != nil {
+					color.Red("%v", err)
+				}
+			}
+
+			if filename == "auth.py" {
+				_, err := file.WriteString(generateAuthPy())
+				if err != nil {
+					color.Red("%v", err)
+				}
+			}
+
+			if filename == "index.html" {
+				_, err := file.WriteString(generateHtml())
+				if err != nil {
+					color.Red("%v", err)
+				}
+			}
 		}
 	}
 
