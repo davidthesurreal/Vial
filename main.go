@@ -43,6 +43,7 @@ func createProject(path string) {
 		"/main.py", "/website/__init__.py",
 		"/website/routes/views.py", "/website/routes/auth.py",
 		"/website/templates/index.html",
+		"/website/templates/base.html",
 		"/website/static/style.css",
 		"/website/static/script.js",
 	}
@@ -91,8 +92,15 @@ func createProject(path string) {
 				}
 			}
 
+			if filename == "base.html" {
+				_, err := file.WriteString(generateBaseHtml())
+				if err != nil {
+					color.Red("%v", err)
+				}
+			}
+
 			if filename == "index.html" {
-				_, err := file.WriteString(generateHtml())
+				_, err := file.WriteString(generateIndexHtml())
 				if err != nil {
 					color.Red("%v", err)
 				}

@@ -1,6 +1,6 @@
 package main
 
-func generateHtml() string {
+func generateBaseHtml() string {
 	return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +25,15 @@ func generateHtml() string {
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>`
+}
+
+func generateIndexHtml() string {
+	return `{%extends base.html%}
+
+{%block title%}Home{%endblock%}
+
+{%block content%}
+{%endblock%}`
 }
 
 func generateMainPy() string {
